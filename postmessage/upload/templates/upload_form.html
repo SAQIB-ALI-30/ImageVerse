@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}
+imageverse
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-white mt-4">Edit here changes will be applied</h1>
+<div style="text-align: center;">
+<h3>{%if form.instance.pk %}
+    Edit Upload
+    {% else %}
+    Create Upload
+    {% endif %}
+    
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-warning" type="submit">submit</button>
+    </form>
+    <a href="{% url 'upload_list' %}">Back</a>
+</h3>
+</div>
+{% endblock %}

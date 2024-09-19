@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-white mt-4">Welcome to ImageVerse</h1>
+
+<a class="btn btn-primary mb-2" href="{% url 'upload_create' %}">create a upload</a>
+
+<!-- Use a container for Bootstrap -->
+<div class="container">
+    <!-- Use row class to create a horizontal row -->
+    <div class="row">
+        <!-- Loop through each upload and display it in a column -->
+        {% for upload in uploads %}
+        <div class="col-md-4 mb-4">
+            <!-- Each card occupies 1/3 of the row in a medium-sized screen -->
+            <div class="card" style="width: 18rem;">
+                <img src="{{ upload.photo.url }}" class="card-img-top" alt="upload image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ upload.user.username }}</h5>
+                    <p class="card-text">{{ upload.text }}</p>
+                    {% if upload.user == user %}
+                    <a href="{% url 'upload_edit' upload.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'upload_delete' upload.id %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+logout
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center text-white mt-4">Are you sure you want to logout?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div style="text-align: center; margin-top: 10%;">
+        <button type="submit" class="btn btn-danger">Logout</button>
+        <p><a class="btn btn-success mt-4" href="{% url 'upload_list' %}">Cancel</a></p>
+        </div>
+    </form>
+    {% endblock %}
